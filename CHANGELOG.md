@@ -1,3 +1,123 @@
+# v6.19.0
+- [#3144](https://github.com/xmrig/xmrig/pull/3144) Update to latest `sse2neon.h`.
+- [#3161](https://github.com/xmrig/xmrig/pull/3161) MSVC build: enabled parallel compilation.
+- [#3163](https://github.com/xmrig/xmrig/pull/3163) Improved Zen 3 MSR mod.
+- [#3176](https://github.com/xmrig/xmrig/pull/3176) Update cmake required version to 3.1.
+- [#3182](https://github.com/xmrig/xmrig/pull/3182) DragonflyBSD compilation fixes.
+- [#3196](https://github.com/xmrig/xmrig/pull/3196) Show IP address for failed connections.
+- [#3185](https://github.com/xmrig/xmrig/issues/3185) Fixed macOS DMI reader.
+- [#3198](https://github.com/xmrig/xmrig/pull/3198) Fixed broken RandomX light mode mining.
+- [#3202](https://github.com/xmrig/xmrig/pull/3202) Solo mining: added job timeout (default is 15 seconds).
+
+# v6.18.1
+- [#3129](https://github.com/xmrig/xmrig/pull/3129) Fix: protectRX flushed CPU cache only on MacOS/iOS.
+- [#3126](https://github.com/xmrig/xmrig/pull/3126) Don't reset when pool sends the same job blob.
+- [#3120](https://github.com/xmrig/xmrig/pull/3120) RandomX: optimized `CFROUND` elimination.
+- [#3109](https://github.com/xmrig/xmrig/pull/3109) RandomX: added Blake2 AVX2 version.
+- [#3082](https://github.com/xmrig/xmrig/pull/3082) Fixed GCC 12 warnings.
+- [#3075](https://github.com/xmrig/xmrig/pull/3075) Recognize `armv7ve` as valid ARMv7 target.
+- [#3132](https://github.com/xmrig/xmrig/pull/3132) RandomX: added MSR mod for Zen 4.
+- [#3134](https://github.com/xmrig/xmrig/pull/3134) Added Zen4 to `randomx_boost.sh`.
+
+# v6.18.0
+- [#3067](https://github.com/xmrig/xmrig/pull/3067) Monero v15 network upgrade support and more house keeping.
+  - Removed deprecated AstroBWTv1 and v2.
+  - Fixed debug GhostRider build.
+  - Monero v15 network upgrade support.
+  - Fixed ZMQ debug log.
+  - Improved daemon ZMQ mining stability.
+- [#3054](https://github.com/xmrig/xmrig/pull/3054) Fixes for 32-bit ARM.
+- [#3042](https://github.com/xmrig/xmrig/pull/3042) Fixed being unable to resume from `pause-on-battery`.
+- [#3031](https://github.com/xmrig/xmrig/pull/3031) Fixed `--cpu-priority` not working sometimes.
+- [#3020](https://github.com/xmrig/xmrig/pull/3020) Removed old AstroBWT algorithm.
+
+# v6.17.0
+- [#2954](https://github.com/xmrig/xmrig/pull/2954) **Dero HE fork support (`astrobwt/v2` algorithm).**
+  - [#2961](https://github.com/xmrig/xmrig/pull/2961) Dero HE (`astrobwt/v2`) CUDA config generator.
+  - [#2969](https://github.com/xmrig/xmrig/pull/2969) Dero HE (`astrobwt/v2`) OpenCL support.
+- Fixed displayed DMI memory information for empty slots.
+- [#2932](https://github.com/xmrig/xmrig/pull/2932) Fixed GhostRider with hwloc disabled.
+
+# v6.16.4
+- [#2904](https://github.com/xmrig/xmrig/pull/2904) Fixed unaligned memory accesses.
+- [#2908](https://github.com/xmrig/xmrig/pull/2908) Added MSVC/2022 to `version.h`.
+- [#2910](https://github.com/xmrig/xmrig/issues/2910) Fixed donation for GhostRider/RTM.
+
+# v6.16.3
+- [#2778](https://github.com/xmrig/xmrig/pull/2778) Fixed `READY threads X/X` display after algorithm switching.
+- [#2782](https://github.com/xmrig/xmrig/pull/2782) Updated GhostRider documentation.
+- [#2815](https://github.com/xmrig/xmrig/pull/2815) Fixed `cn-heavy` in 32-bit builds.
+- [#2827](https://github.com/xmrig/xmrig/pull/2827) GhostRider: set correct priority for helper threads.
+- [#2837](https://github.com/xmrig/xmrig/pull/2837) RandomX: don't restart mining threads when the seed changes.
+- [#2848](https://github.com/xmrig/xmrig/pull/2848) GhostRider: added support for `client.reconnect` method.
+- [#2856](https://github.com/xmrig/xmrig/pull/2856) Fix for short responses from some Raptoreum pools.
+- [#2873](https://github.com/xmrig/xmrig/pull/2873) Fixed GhostRider benchmark on single-core systems.
+- [#2882](https://github.com/xmrig/xmrig/pull/2882) Fixed ARMv7 compilation.
+- [#2893](https://github.com/xmrig/xmrig/pull/2893) KawPow OpenCL: use separate UV loop for building programs.
+
+# v6.16.2
+- [#2751](https://github.com/xmrig/xmrig/pull/2751) Fixed crash on CPUs supporting VAES and running GCC-compiled xmrig.
+- [#2761](https://github.com/xmrig/xmrig/pull/2761) Fixed broken auto-tuning in GCC Windows build.
+- [#2771](https://github.com/xmrig/xmrig/issues/2771) Fixed environment variables support for GhostRider and KawPow. 
+- [#2769](https://github.com/xmrig/xmrig/pull/2769) Performance fixes:
+  - Fixed several performance bottlenecks introduced in v6.16.1.
+  - Fixed overall GCC-compiled build performance, it's the same speed as MSVC build now.
+  - **Linux builds are up to 10% faster now compared to v6.16.0 GCC build.**
+  - **Windows builds are up to 5% faster now compared to v6.16.0 MSVC build.**
+
+# v6.16.1
+- [#2729](https://github.com/xmrig/xmrig/pull/2729) GhostRider fixes:
+  - Added average hashrate display.
+  - Fixed the number of threads shown at startup.
+  - Fixed `--threads` or `-t` command line option (but `--cpu-max-threads-hint` is recommended to use).
+- [#2738](https://github.com/xmrig/xmrig/pull/2738) GhostRider fixes:
+  - Fixed "difficulty is not a number" error when diff is high on some pools.
+  - Fixed GhostRider compilation when `WITH_KAWPOW=OFF`.
+- [#2740](https://github.com/xmrig/xmrig/pull/2740) Added VAES support for Cryptonight variants **+4% speedup on Zen3**.
+  - VAES instructions are available on Intel Ice Lake/AMD Zen3 and newer CPUs.
+  - +4% speedup on Ryzen 5 5600X.
+
+# v6.16.0
+- [#2712](https://github.com/xmrig/xmrig/pull/2712) **GhostRider algorithm (Raptoreum) support**: read the [RELEASE NOTES](src/crypto/ghostrider/README.md) for quick start guide and performance comparisons.
+- [#2682](https://github.com/xmrig/xmrig/pull/2682) Fixed: use cn-heavy optimization only for Vermeer CPUs.
+- [#2684](https://github.com/xmrig/xmrig/pull/2684) MSR mod: fix for error 183.
+
+# v6.15.3
+- [#2614](https://github.com/xmrig/xmrig/pull/2614) OpenCL fixes for non-AMD platforms.
+- [#2623](https://github.com/xmrig/xmrig/pull/2623) Fixed compiling without kawpow.
+- [#2636](https://github.com/xmrig/xmrig/pull/2636) [#2639](https://github.com/xmrig/xmrig/pull/2639) AstroBWT speedup (up to +35%).
+- [#2646](https://github.com/xmrig/xmrig/pull/2646) Fixed MSVC compilation error.
+
+# v6.15.2
+- [#2606](https://github.com/xmrig/xmrig/pull/2606) Fixed: AstroBWT auto-config ignored `max-threads-hint`.
+- Fixed possible crash on Windows (regression in v6.15.1).
+
+# v6.15.1
+- [#2586](https://github.com/xmrig/xmrig/pull/2586) Fixed Windows 7 compatibility.
+- [#2594](https://github.com/xmrig/xmrig/pull/2594) Added Windows taskbar icon colors.
+
+# v6.15.0
+- [#2548](https://github.com/xmrig/xmrig/pull/2548) Added automatic coin detection for daemon mining.
+- [#2563](https://github.com/xmrig/xmrig/pull/2563) Added new algorithm RandomX Graft (`rx/graft`).
+- [#2565](https://github.com/xmrig/xmrig/pull/2565) AstroBWT: added AVX2 Salsa20 implementation.
+- Added support for new CUDA plugin API (previous API still supported).
+
+# v6.14.1
+- [#2532](https://github.com/xmrig/xmrig/pull/2532) Refactoring: stable (persistent) algorithms IDs.
+- [#2537](https://github.com/xmrig/xmrig/pull/2537) Fixed Termux build.
+
+# v6.14.0
+- [#2484](https://github.com/xmrig/xmrig/pull/2484) Added ZeroMQ support for solo mining.
+- [#2476](https://github.com/xmrig/xmrig/issues/2476) Fixed crash in DMI memory reader.
+- [#2492](https://github.com/xmrig/xmrig/issues/2492) Added missing `--huge-pages-jit` command line option.
+- [#2512](https://github.com/xmrig/xmrig/pull/2512) Added show the number of transactions in pool job.
+
+# v6.13.1
+- [#2468](https://github.com/xmrig/xmrig/pull/2468) Fixed regression in previous version: don't send miner signature during regular mining.
+
+# v6.13.0
+- [#2445](https://github.com/xmrig/xmrig/pull/2445) Added support for solo mining with miner signatures for the upcoming Wownero fork.
+
 # v6.12.2
 - [#2280](https://github.com/xmrig/xmrig/issues/2280) GPU backends are now disabled in benchmark mode.
 - [#2322](https://github.com/xmrig/xmrig/pull/2322) Improved MSR compatibility with recent Linux kernels and updated `randomx_boost.sh`.

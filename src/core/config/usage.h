@@ -64,7 +64,9 @@ static inline const std::string &usage()
 
 #   ifdef XMRIG_FEATURE_HTTP
     u += "      --daemon                  use daemon RPC instead of pool for solo mining\n";
+    u += "      --daemon-zmq-port         daemon's zmq-pub port number (only use it if daemon has it enabled)\n";
     u += "      --daemon-poll-interval=N  daemon poll interval in milliseconds (default: 1000)\n";
+    u += "      --daemon-job-timeout=N    daemon job timeout in milliseconds (default: 15000)\n";
     u += "      --self-select=URL         self-select block templates from URL\n";
     u += "      --submit-to-origin        also submit solution back to self-select URL\n";
 #   endif
@@ -89,6 +91,9 @@ static inline const std::string &usage()
 #   ifdef XMRIG_OS_LINUX
     u += "      --hugepage-size=N         custom hugepage size in kB\n";
 #   endif
+#   ifdef XMRIG_ALGO_RANDOMX
+    u += "      --huge-pages-jit          enable huge pages support for RandomX JIT code\n";
+#   endif
     u += "      --asm=ASM                 ASM optimizations, possible values: auto, none, intel, ryzen, bulldozer\n";
 
 #   if defined(__x86_64__) || defined(_M_AMD64)
@@ -103,11 +108,6 @@ static inline const std::string &usage()
     u += "      --randomx-wrmsr=N         write custom value(s) to MSR registers or disable MSR mod (-1)\n";
     u += "      --randomx-no-rdmsr        disable reverting initial MSR values on exit\n";
     u += "      --randomx-cache-qos       enable Cache QoS\n";
-#   endif
-
-#   ifdef XMRIG_ALGO_ASTROBWT
-    u += "      --astrobwt-max-size=N     skip hashes with large stage 2 size, default: 550, min: 400, max: 1200\n";
-    u += "      --astrobwt-avx2           enable AVX2 optimizations for AstroBWT algorithm";
 #   endif
 
 #   ifdef XMRIG_FEATURE_OPENCL
@@ -199,6 +199,13 @@ static inline const std::string &usage()
 
 #   ifdef XMRIG_FEATURE_DMI
     u += "      --no-dmi                  disable DMI/SMBIOS reader\n";
+#   endif
+
+#   ifdef XMRIG_FEATURE_MO_BENCHMARK
+    u += "\nMoneroOcean Benchmark (algo-perf):\n";
+    u += "      --rebench-algo            run algo-perf benchmark (default if config contains no algo-perf)\n";
+    u += "      --bench-algo-time=N       run algo-perf benchmark this many seconds per algo (default: 10)\n";
+    u += "      --algo-min-time=N         when mining, avoid switching more often than every N seconds (default: 0/disabled)\n";
 #   endif
 
     return u;

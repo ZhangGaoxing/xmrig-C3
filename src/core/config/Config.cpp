@@ -16,7 +16,6 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include <algorithm>
 #include <cinttypes>
 #include <cstring>
@@ -112,7 +111,7 @@ public:
     }
 };
 
-}
+} // namespace xmrig
 
 
 xmrig::Config::Config() :
@@ -203,7 +202,7 @@ bool xmrig::Config::isShouldSave() const
     }
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef XMRIG_FEATURE_MO_BENCHMARK
     if (m_benchmark.isNewBenchRun()) {
         return true;
     }
@@ -246,7 +245,7 @@ bool xmrig::Config::read(const IJsonReader &reader, const char *fileName)
     d_ptr->healthPrintTime = reader.getUint(kHealthPrintTime, d_ptr->healthPrintTime);
 #   endif
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef XMRIG_FEATURE_MO_BENCHMARK
     m_benchmark.read(reader.getValue(kAlgoPerf));
 #   endif
 
@@ -315,9 +314,10 @@ void xmrig::Config::getJSON(rapidjson::Document &doc) const
     doc.AddMember(StringRef(kVerbose),                  Log::verbose(), allocator);
     doc.AddMember(StringRef(kWatch),                    m_watch, allocator);
 
-#   ifdef XMRIG_FEATURE_BENCHMARK
+#   ifdef XMRIG_FEATURE_MO_BENCHMARK
     doc.AddMember(StringRef(kRebenchAlgo),              isRebenchAlgo(), allocator);
     doc.AddMember(StringRef(kBenchAlgoTime),            benchAlgoTime(), allocator);
+    doc.AddMember(StringRef(kAlgoMinTime),              algoMinTime(), allocator);
     doc.AddMember(StringRef(kAlgoPerf),                 m_benchmark.toJSON(doc), allocator);
 #   endif
 
