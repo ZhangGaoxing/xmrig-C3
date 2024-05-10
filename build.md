@@ -18,3 +18,10 @@ mkdir xmrig/build && cd xmrig/build
 cmake ..
 make -j$(nproc)
 ```
+
+## Docker
+
+```
+docker build -t zhanggaoxing/xmrig-c3:arm64 -f Dockerfile .
+docker run -itd --restart=always -v $PWD:/xmrig/configs zhanggaoxing/xmrig-c3:arm64
+```
