@@ -386,8 +386,11 @@ xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint3
 #   endif
 
 #   ifdef XMRIG_ALGO_GHOSTRIDER
-    if (f == Algorithm::GHOSTRIDER) {
-        return CpuThreads(std::max<size_t>(count / 2, 1), 8);
+    switch (algorithm.id()) {
+        case Algorithm::GHOSTRIDER_RTM: return CpuThreads(std::max<size_t>(count_limit2, 1), 8);
+        case Algorithm::FLEX_KCN:       return CpuThreads(std::max<size_t>(count_limit2, 1), 1);
+        default:
+            break;
     }
 #   endif
 
