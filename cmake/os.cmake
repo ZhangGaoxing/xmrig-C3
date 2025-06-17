@@ -1,4 +1,4 @@
-if (WIN32)
+if (WIN32 OR CMAKE_SYSTEM_NAME MATCHES "MSYS")
     set(XMRIG_OS_WIN ON)
 elseif (APPLE)
     set(XMRIG_OS_APPLE ON)
@@ -19,7 +19,6 @@ else()
         set(XMRIG_OS_FREEBSD ON)
     endif()
 endif()
-
 
 if (XMRIG_OS_WIN)
     add_definitions(-DWIN32 -DXMRIG_OS_WIN)
